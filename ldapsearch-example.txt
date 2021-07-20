@@ -1,0 +1,1 @@
+ldapsearch -D "cn=binduser,ou=users,dc=pikaboo,dc=htb" -W  -x -b "dc=htb"
